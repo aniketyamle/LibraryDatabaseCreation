@@ -1,0 +1,107 @@
+Part 1:
+
+EER diagram for library Data Management consists for various tables.
+It's representation is stored in EER-Schema-Diagram.png file.
+
+
+
+Entity:Book  = Holds information regarding book
+   Attributes:isbn primary key
+   			  Title
+   			  Description
+
+Entity Book is mapped to other entities such as book_category,author,subject_area , lang,binding .These entities are connected to book with non-identifying relationship.
+
+Entity author contains: attributes id and author_name.
+
+Entity subject_area contains: attributes id and subject_area .
+This entity describes whether book is related to which subject.
+
+Entity bind contains: attributes id and bind_type.
+It describes whether the book has hardcover or softcover.
+
+Entity lang contains: attributes id and language_name.
+It describes the book is written in which language.
+
+Entity book_category contains: attributes id and book_category.
+It also describes the book as reference or rare book.
+
+
+Entity interested_to_acquire contains id and is mapped to another reason entity to justify the reason where book is available to lent or not or interested to acquire. 
+Entity reason contains 2 attributes as id (Primary Key) and reason.
+
+
+
+Entity book_for_lending: It provides the details on count of books lent to member or available.
+		Attributes:id primary key
+				   loan_count= No of borrowed copies of particular book
+				   available_count= No of available copies of particular book
+				   
+
+Entity book_member :It is similar to transaction receipt of book while borrowing.
+This entity is mapped to book with foreign key related to isbn .
+				Attributes:last_date_of_return = date till which book should be returned based on grace_period limit.
+				date_of_borrowing = the day on which book is loaned out.
+				date_of_return= Actual date when book is returned to library.
+
+
+Entity:Member: Information regarding the members of library.
+It is mapped to book_member for gaining the information on loaned books.It is also mapped to non-identifying relationships with member status  and member type.
+
+Attributes:    id
+				   name
+				   ssn
+				   campus_address
+				   home_address
+				   phone_no
+				   card_issue
+				   card_expiry
+
+
+Member entity acts as superentity where it involves total participation into 2 categories as student and professor .
+As professor and student has different set of limits regrading grace_period and borrowing limit.
+
+Entity member_status: It states whether a member is active or inactive to issue book from library.
+Attributes:    id
+				   member_status
+
+
+Entity member_type : It classifies member as student or professor .
+It contains some attributes which act as constraints too.
+Attributes:    id
+				   member_Type
+				   grace_period: no. of days book is allowed to borrow 
+				   book_limit: No. of books allowed to borrow.
+				   borrowing_period_limit
+
+
+
+Entity:employee: Information regarding the person who work in a university.
+It is mapped to staff.
+Attributes:    id
+				   name
+				   ssn
+				   campus_address
+				   home_address
+				   phone_no
+				   cardissue
+				   card_expiry
+				   joining_date: Parameter introduced to have details for issuing library card and use it for expiry terms also when a new employee is added to system.
+
+As employee is indirectly related to member because if employee is professor he is directly a member of library.
+
+Staff contains employee which can be classified to 
+chief librarian, departmental associate librarians, reference librarians, check-out staff, and library assistants and professor.
+
+
+Representation of One-to-Many or One-to-One,etc is represented in EER diagram itself.
+
+
+
+
+
+		
+
+
+
+
